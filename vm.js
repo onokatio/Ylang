@@ -1,29 +1,57 @@
-const compile = (code) => {
-	opcode_list = code.split(' ');
+const compile = (codes) => {
+	var memory = {};
+	opcode_list = codes.split('\n');
 	//console.log("---------- \n");
 	//console.log("[code] " + opcode_list);
-	if( code.match(/^要するに俺が言いたいのは 「(.*)」 ってことだな！$/) !== null ){
+	opcode_list.map( code => {
+		if( code.match(/^要するに俺が言いたいのは 「(.*)」 ってことだな！$/) !== null ){
 
-		//console.log("[mode] echo");
-		//console.log("string=" + code.split(' ')[1]);
-		console.log(code.match(/^要するに俺が言いたいのは 「(.*)」 ってことだな！$/)[1]);
+			//console.log("[mode] echo");
+			//console.log("string=" + code.split(' ')[1]);
+			console.log(code.match(/^要するに俺が言いたいのは 「(.*)」 ってことだな！$/)[1]);
 
-	}else if( code.match(/が知りたい！$/) ){
+		}else if( code.match(/^要するに俺が言いたいのは (.*) ってことだな！$/) !== null ){
+			print_var = code.match(/^要するに俺が言いたいのは (.*) ってことだな！$/)[1];
+			console.log(memory[print_var])
+		}else if( code.match(/が知りたい！$/) ){
 
-		//console.log("[mode] input");
-		//console.log("var=" + code.split(' ')[0]);
-		var a = prompt("入力してください。");
+			//console.log("[mode] input");
+			//console.log("var=" + code.split(' ')[0]);
+			//var a = prompt("入力してください。");
 
-	}else if( code.match(/は (.*) だな！$/) ){
-		//console.log("[mode] var");
-		//console.log("var=" + code.split(' ')[0]);
-		//console.log("expr=" + code.match(/は (.*) だな！$/)[1]);
-	}else{
-		console.log("[mode] other");
-	}
+		}else if( code.match(/は (.*) だな！$/) ){
+			ans_var=code.split(' ')[0];
+			expr = code.match(/は (.*) だな！$/)[1];
+			arg1 = expr.match(/(.*) と (.*) の(.*)$/)[1];
+			if(isNaN(arg1)){
+				arg1 = memory[arg1];
+			}
+			arg2 = expr.match(/(.*) と (.*) の(.*)$/)[2];
+			if(isNaN(arg2)){
+				arg2 = memory[arg2];
+			}
+			wasa = expr.match(/(.*) と (.*) の(.*)$/)[3];
+			if(wasa === "和"){
+				ans = parseInt(arg1) + parseInt(arg2);
+			}else if(wasa === "差"){
+				ans = parseInt(arg1) - parseInt(arg2);
+			}else if(wasa === "積"){
+				ans = parseInt(arg1) * parseInt(arg2);
+			}else if(wasa === "除"){
+				ans = parseInt(arg1) / parseInt(arg2);
+			}
+			memory[ans_var] = ans;
+		}else if( code.match(/は (.*) だな！$/) ){
+		}else{
+			console.log("[mode] other");
+		}
+	});
 }
 
-compile("要するに俺が言いたいのは 「不可能ではない」 ってことだな！");
-compile("要するに俺が言いたいのは 「aaaaaaaaaa」 ってことだな！");
-compile("a が知りたい！");
-compile("a は 5 と b の和 だな！");
+compile("要するに俺が言いたいのは 「Hello World」 ってことだな！\n" +
+	"要するに俺が言いたいのは 「テスト」 ってことだな！\n" +
+	"a は 5 と 4 の和 だな！\n" +
+	"要するに俺が言いたいのは a ってことだな！\n" +
+	"a は a と a の積 だな！\n" +
+	"要するに俺が言いたいのは a ってことだな！"
+);
