@@ -3,7 +3,7 @@ const compile = (codes) => {
 	opcode_list = codes.split('\n');
 	//console.log("---------- \n");
 	//console.log("[code] " + opcode_list);
-	opcode_list.map( code => {
+	opcode_list.forEach( (code,index) => {
 		if( code.match(/^要するに俺が言いたいのは 「(.*)」 ってことだな！$/) !== null ){
 
 			//console.log("[mode] echo");
@@ -41,7 +41,11 @@ const compile = (codes) => {
 				ans = parseInt(arg1) / parseInt(arg2);
 			}
 			memory[ans_var] = ans;
-		}else if( code.match(/は (.*) だな！$/) ){
+		}else if( code.match(/もし (.*) なら$/) ){
+			let index_copy = index
+			for( opcode_list[index_copy] !== '{') index_copy++;
+			compile(opcode_list.slice(index,index_copy))
+			index = index_copy+1;
 		}else{
 			console.log("[mode] other");
 		}
