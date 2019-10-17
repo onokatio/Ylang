@@ -48,10 +48,11 @@ const compile = (codes) => {
 	});
 }
 
-compile("要するに俺が言いたいのは 「Hello World」 ってことだな！\n" +
+sourcecode =
+"要するに俺が言いたいのは 「Hello World」 ってことだな！\n" +
 	"要するに俺が言いたいのは 「テスト」 ってことだな！\n" +
 	"a は 5 と 4 の和 だな！\n" +
 	"要するに俺が言いたいのは a ってことだな！\n" +
 	"a は a と a の積 だな！\n" +
 	"要するに俺が言いたいのは a ってことだな！"
-);
+compile(sourcecode);
