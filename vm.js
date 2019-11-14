@@ -42,10 +42,12 @@ const compile = (codes) => {
 			}
 			memory[ans_var] = ans;
 		}else if( code.match(/もし (.*) なら$/) ){
+			/*
 			let index_copy = index
-			for( opcode_list[index_copy] !== '{') index_copy++;
+			for( opcode_list[index_copy] !== '{' ) index_copy++;
 			compile(opcode_list.slice(index,index_copy))
 			index = index_copy+1;
+			*/
 		}else{
 			console.log("[mode] other");
 		}
@@ -53,7 +55,7 @@ const compile = (codes) => {
 }
 
 sourcecode =
-"要するに俺が言いたいのは 「Hello World」 ってことだな！\n" +
+        "要するに俺が言いたいのは 「Hello World」 ってことだな！\n" +
 	"要するに俺が言いたいのは 「テスト」 ってことだな！\n" +
 	"a は 5 と 4 の和 だな！\n" +
 	"要するに俺が言いたいのは a ってことだな！\n" +
