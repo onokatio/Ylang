@@ -39,6 +39,10 @@ const compile = (codes) => {
 				ans = parseInt(arg1) * parseInt(arg2);
 			}else if(wasa === "除"){
 				ans = parseInt(arg1) / parseInt(arg2);
+			}else if(wasa === "アンド"){
+				ans = parseInt(arg1) & parseInt(arg2);
+			}else if(wasa === "オア"){
+				ans = parseInt(arg1) | parseInt(arg2);
 			}
 			memory[ans_var] = ans;
 		}else if( code.match(/もし (.*) なら$/) ){
@@ -60,5 +64,9 @@ sourcecode =
 	"a は 5 と 4 の和 だな！\n" +
 	"要するに俺が言いたいのは a ってことだな！\n" +
 	"a は a と a の積 だな！\n" +
-	"要するに俺が言いたいのは a ってことだな！"
+	"要するに俺が言いたいのは a ってことだな！\n" +
+	"b は 2 と 4 のアンド だな！\n" +
+	"要するに俺が言いたいのは b ってことだな！\n" +
+	"b は 2 と 4 のオア だな！\n" +
+	"要するに俺が言いたいのは b ってことだな！"
 compile(sourcecode);
