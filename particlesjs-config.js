@@ -106,5 +106,10 @@ const particle_setting = {
       }
     }
   },
-  "retina_detect": true
+  "retina_detect": true,
+  "resize": false,
+  "canvas": {
+	  w: "100%",
+	  h: "50%",
+  }
 }
