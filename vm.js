@@ -46,6 +46,37 @@ const compile = (codes) => {
 			}
 			memory[ans_var] = ans;
 		}else if( code.match(/もし (.*) なら$/) ){
+			expr = code.match(/もし (.*) なら$/)[1];
+			if( expr.match( /(.*) が (.*) (.*)$/ ) ){
+				arg1 = expr.match( /(.*) が (.*) (.*)$/ )[1];
+				if(isNaN(arg1)){
+					arg1 = mamory[arg1];
+				}
+				arg2 = expr.match( /(.*) が (.*) (.*)$/ )[2];
+				if(isNaN(arg2)){
+					arg2 = mamory[arg1];
+				}
+				comp_oper = expr.match( /(.*) が (.*) (.*)$/ )[3];
+				if(comp_oper === "と等しい"){
+					if(arg1 === arg2){
+						ans = true;
+					}else if(arg1 !== arg2){
+						ans = false;
+					}
+				}else if(comp_oper === "より大きい"){
+					if(arg1 > arg2){
+						ans = true;
+					}else if(arg1 < arg2){
+						ans = false;
+					}
+				}else if(comp_oper === "より小さい"){
+					if(arg1 < arg2){
+						ans = true;
+					}else if(arg1 > arg2){
+						ans = false;
+					}
+				}
+			}
 			/*
 			let index_copy = index
 			for( opcode_list[index_copy] !== '{' ) index_copy++;
