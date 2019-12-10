@@ -65,23 +65,30 @@ const compile = (codes) => {
 				if(comp_oper === "と等しい"){
 					if(arg1 === arg2){
 						ans = true;
+						//console.log("===")
 					}else if(arg1 !== arg2){
 						ans = false;
+						//console.log("!==")
 					}
 				}else if(comp_oper === "より大きい"){
 					if(arg1 > arg2){
 						ans = true;
+						//console.log(">")
 					}else if(arg1 < arg2){
 						ans = false;
+						//console.log("<")
 					}
 				}else if(comp_oper === "より小さい"){
 					if(arg1 < arg2){
 						ans = true;
+						//console.log("<")
 					}else if(arg1 > arg2){
 						ans = false;
+						//console.log(">")
 					}
 				}
 			}
+
 			/*
 			let index_copy = index
 			for( opcode_list[index_copy] !== '{' ) index_copy++;
@@ -104,6 +111,11 @@ sourcecode =
 	"b は 2 と 4 のアンド だな！\n" +
 	"要するに俺が言いたいのは b ってことだな！\n" +
 	"b は 2 と 4 のオア だな！\n" +
-	"要するに俺が言いたいのは b ってことだな！"
+	"要するに俺が言いたいのは b ってことだな！\n" +
+	/*"もし 1 が 1 と等しい なら\n" +
+	"もし 1 が 0 と等しい なら\n" +
+	"もし 1 が 2 より大きい なら\n" +
+	"もし 2 が 1 より大きい なら\n" +
+	"もし 1 が 2 より小さい なら\n" +
+	"もし 2 が 1 より小さい なら"*/
 compile(sourcecode);
-
