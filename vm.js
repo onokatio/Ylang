@@ -19,10 +19,7 @@ const compile = (codes) => {
 			print_var = code.match(/^要するに俺が言いたいのは (.*) ってことだな！$/)[1];
 			print_result(memory[print_var])
 		}else if( code.match(/が知りたい！$/) ){
-
-			//console.log("[mode] input");
 			memory[code.split(' ')[0]] = prompt("入力してください。");
-
 		}else if( code.match(/は (.*) だな！$/) ){
 			ans_var=code.split(' ')[0];
 			expr = code.match(/は (.*) だな！$/)[1];
@@ -100,6 +97,7 @@ const compile = (codes) => {
 	});
 }
 
+/*
 sourcecode =
         "要するに俺が言いたいのは 「Hello World」 ってことだな！\n" +
 	"要するに俺が言いたいのは 「テスト」 ってことだな！\n" +
@@ -113,10 +111,11 @@ sourcecode =
 	"要するに俺が言いたいのは b ってことだな！\n" +
 	"b は 2 と 4 のオア だな！\n" +
 	"要するに俺が言いたいのは b ってことだな！\n" +
-	/*"もし 1 が 1 と等しい なら\n" +
+	"もし 1 が 1 と等しい なら\n" +
 	"もし 1 が 0 と等しい なら\n" +
 	"もし 1 が 2 より大きい なら\n" +
 	"もし 2 が 1 より大きい なら\n" +
 	"もし 1 が 2 より小さい なら\n" +
-	"もし 2 が 1 より小さい なら"*/
+	"もし 2 が 1 より小さい なら"
+	*/
 compile(sourcecode);
