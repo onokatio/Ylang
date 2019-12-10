@@ -35,6 +35,22 @@
 				</div>
 			</div>
 			<p>
+				<script>
+					const card = document.createElement("card")
+					card.className = "card"
+					card.style = "width: 18rem; margin: 10px;"
+
+					const card-body = document.createElement("div")
+					card-body.className = "card-body"
+
+					const card-title = document.createElement("div")
+					card-title.className = "card-title"
+					card-title.innerText = title
+
+					const card-text = document.createElement("p")
+					card-text.innerText = description
+
+				</script>
 				<div class="card" style="width: 18rem; margin: 10px;">
 				  <div class="card-body">
 				    <h5 class="card-title">サンプル1 Hello World</h5>
