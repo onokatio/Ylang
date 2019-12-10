@@ -21,8 +21,7 @@ const compile = (codes) => {
 		}else if( code.match(/が知りたい！$/) ){
 
 			//console.log("[mode] input");
-			//console.log("var=" + code.split(' ')[0]);
-			//var a = prompt("入力してください。");
+			memory[code.split(' ')[0]] = prompt("入力してください。");
 
 		}else if( code.match(/は (.*) だな！$/) ){
 			ans_var=code.split(' ')[0];
@@ -104,6 +103,8 @@ const compile = (codes) => {
 sourcecode =
         "要するに俺が言いたいのは 「Hello World」 ってことだな！\n" +
 	"要するに俺が言いたいのは 「テスト」 ってことだな！\n" +
+	"qwerty が知りたい！\n" +
+	"要するに俺が言いたいのは qwerty ってことだな！"
 	"a は 5 と 4 の和 だな！\n" +
 	"要するに俺が言いたいのは a ってことだな！\n" +
 	"a は a と a の積 だな！\n" +
