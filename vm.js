@@ -3,12 +3,15 @@ const print_result = text => {
 	console.log(text)
 }
 
-const compile = (codes) => {
+const compile = (codes,pc) => {
 	var memory = {};
 	opcode_list = codes.split('\n');
 	//console.log("---------- \n");
 	//console.log("[code] " + opcode_list);
-	opcode_list.forEach( (code,index) => {
+	//opcode_list.forEach( (code,index) => {
+	while( pc < opcode_list.length ){
+		const code = opcode_list[pc];
+
 		if( code.match(/^要するに俺が言いたいのは 「(.*)」 ってことだな！$/) !== null ){
 
 			//console.log("[mode] echo");
@@ -91,7 +94,8 @@ const compile = (codes) => {
 		}else{
 			print_result("[mode] other");
 		}
-	});
+		pc++
+	};
 }
 
 sourcecode =
