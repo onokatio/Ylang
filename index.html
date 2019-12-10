@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lnag="ja">
+	<head>
+		<meta charset='UTF-8'>
+		<link rel="stylesheet" href="https://cdn.honokak.osaka/honoka/4.3.1/css/bootstrap.min.css">
+		<meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'>
+		<title>Y Lang</title>
+		<style>
+			canvas {
+				display: block;
+				vertical-align: bottom;
+				/*
+				height: 50vh;
+				width: 100vw;
+				*/
+				background-attachment:fixed;
+			}
+		</style>
+	</head>
+	<body style='background: #000;'>
+		<div id="particle" class="d-flex flex-column justify-content-center align-items-center align-self-center" style="background-color: #000;">
+			<h1 class="text-center display-1" style="display: inline; color: #ddd;">Y Lang</h1>
+			<h2 id="typewriter" class="text-center" style="display: inline; color: #ddd;">Y Lang</h2>
+			<div class="container">
+				<div class="row my-3 py-3">
+					<div class="col">
+						<textarea class="form-control" id="code" rows="3" placeholder="Source code"></textarea>
+					</div>
+					<div class="col d-flex flex-row justify-content-center align-items-center align-self-center">
+						<button type="button" class="btn btn-primary" onclick='compile(document.getElementById("code").value)'>Compile</button>
+					</div>
+					<div class="col">
+						<textarea class="form-control" id="result" rows="3" placeholder="Result"></textarea>
+					</div>
+				</div>
+			</div>
+			<p>
+				<script>
+					const card = document.createElement("card")
+					card.className = "card"
+					card.style = "width: 18rem; margin: 10px;"
+
+					const card-body = document.createElement("div")
+					card-body.className = "card-body"
+
+					const card-title = document.createElement("div")
+					card-title.className = "card-title"
+					card-title.innerText = title
+
+					const card-text = document.createElement("p")
+					card-text.innerText = description
+
+				</script>
+				<div class="card" style="width: 18rem; margin: 10px;">
+				  <div class="card-body">
+				    <h5 class="card-title">サンプル1 Hello World</h5>
+				    <p class="card-text">画面に'Hello World'と表示するだけの、簡単なサンプルプログラムです。</p>
+					<p style='background-color: #222; color: #bbb;'>
+						<code style='color: #fff; margin: 1rem 1rem;'>
+要するに俺が言いたいのは 「Hello World」 ってことだな！
+						</code>
+					</p>
+				    <a href="#" class="btn btn-primary">実行してみる</a>
+				  </div>
+				</div>
+				<div class="card" style="width: 18rem;">
+				  <div class="card-body">
+				    <h5 class="card-title">サンプル2 数値同士の足し算と変数代入</h5>
+				    <p class="card-text">数値同士を加算し、その結果を変数へ代入します。</p>
+					<p style='background-color: #222; color: #bbb;'>
+						<code style='color: #fff; margin: 1rem 1rem;'>
+							a は 5 と 4 の和 だな！
+							要するに俺が言いたいのは a ってことだな！
+						</code>
+					</p>
+				    <a href="#" class="btn btn-primary">実行してみる</a>
+				  </div>
+				</div>
+			</p>
+		</div>
+		<!-- position: absolute; top: 50%; left: 50%;-->
+		<script src="/particles.js"></script>
+		<script src="/particlesjs-config.js"></script>
+		<script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+		<script>
+			particlesJS('particle', particle_setting);
+			new Typewriter('#typewriter', {
+			  strings: ['Hello World', "An Japanese based programming Language", "By Y"],
+			  autoStart: true,
+			  loop: true,
+			});
+		</script>
+		<script src='vm.js'></script>
+	</body>
+</html>

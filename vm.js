@@ -1,3 +1,8 @@
+const print_result = text => {
+	document.getElementById("result").value = text
+	console.log(text)
+}
+
 const compile = (codes) => {
 	var memory = {};
 	opcode_list = codes.split('\n');
@@ -8,11 +13,11 @@ const compile = (codes) => {
 
 			//console.log("[mode] echo");
 			//console.log("string=" + code.split(' ')[1]);
-			console.log(code.match(/^要するに俺が言いたいのは 「(.*)」 ってことだな！$/)[1]);
+			print_result(code.match(/^要するに俺が言いたいのは 「(.*)」 ってことだな！$/)[1]);
 
 		}else if( code.match(/^要するに俺が言いたいのは (.*) ってことだな！$/) !== null ){
 			print_var = code.match(/^要するに俺が言いたいのは (.*) ってことだな！$/)[1];
-			console.log(memory[print_var])
+			print_result(memory[print_var])
 		}else if( code.match(/が知りたい！$/) ){
 
 			//console.log("[mode] input");
@@ -84,7 +89,7 @@ const compile = (codes) => {
 			index = index_copy+1;
 			*/
 		}else{
-			console.log("[mode] other");
+			print_result("[mode] other");
 		}
 	});
 }
@@ -101,3 +106,4 @@ sourcecode =
 	"b は 2 と 4 のオア だな！\n" +
 	"要するに俺が言いたいのは b ってことだな！"
 compile(sourcecode);
+
