@@ -3,12 +3,18 @@ const print_result = text => {
 	console.log(text)
 }
 
+/*
 const compile = (codes,pc) => {
 	var memory = {};
 	opcode_list = codes.split('\n');
-	//console.log("---------- \n");
-	//console.log("[code] " + opcode_list);
-	//opcode_list.forEach( (code,index) => {
+	while( pc < opcode_list.length ){
+	}
+}
+*/
+
+const compile = (codes,pc) => {
+	var memory = {};
+	opcode_list = codes.split('\n');
 	while( pc < opcode_list.length ){
 		const code = opcode_list[pc];
 
