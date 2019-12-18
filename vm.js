@@ -5,8 +5,7 @@ const print_result = text => {
 	console.log(text)
 }
 
-const compile_nop = (codes,pc) => {
-	var memory = {};
+const compile_nop = (codes,pc,memory) => {
 	opcode_list = codes.split('\n');
 	while( pc < opcode_list.length ){
 		const code = opcode_list[pc];
@@ -14,8 +13,7 @@ const compile_nop = (codes,pc) => {
 	}
 }
 
-const compile = (codes,pc) => {
-	var memory = {};
+const compile = (codes,pc,memory) => {
 	opcode_list = codes.split('\n');
 	while( pc < opcode_list.length ){
 		const code = opcode_list[pc];
@@ -115,5 +113,5 @@ sourcecode =
 	"要するに俺が言いたいのは b ってことだな！\n" +
 	"b は 2 と 4 のオア だな！\n" +
 	"要するに俺が言いたいのは b ってことだな！"
-compile(sourcecode,0);
+compile(sourcecode,0,{});
 
