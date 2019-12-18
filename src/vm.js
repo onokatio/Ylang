@@ -6,7 +6,7 @@ const print_result = text => {
 }
 
 const compile_nop = (codes,pc,memory) => {
-	opcode_list = codes.split('\n');
+	const opcode_list = codes.split('\n');
 	while( pc < opcode_list.length ){
 		const code = opcode_list[pc];
 		if( code.match(/^だな！$/) !== null ){
@@ -19,8 +19,8 @@ const compile_nop = (codes,pc,memory) => {
 	return pc;
 }
 
-const compile = (codes,pc,memory) => {
-	opcode_list = codes.split('\n');
+export const compile = (codes,pc,memory) => {
+	const opcode_list = codes.split('\n');
 	while( pc < opcode_list.length ){
 		const code = opcode_list[pc];
 
@@ -29,24 +29,25 @@ const compile = (codes,pc,memory) => {
 			print_result(code.match(/^要するに俺が言いたいのは 「(.*)」 ってことだな！$/)[1] + "\n");
 
 		}else if( code.match(/^要するに俺が言いたいのは (.*) ってことだな！$/) !== null ){
-			print_var = code.match(/^要するに俺が言いたいのは (.*) ってことだな！$/)[1];
+			const print_var = code.match(/^要するに俺が言いたいのは (.*) ってことだな！$/)[1];
 			print_result(memory[print_var])
 		}else if( code.match(/が知りたい！$/) ){
 			if(typeof prompt !== "undefined"){
 				memory[code.split(' ')[0]] = prompt("入力してください。");
 			}
 		}else if( code.match(/は (.*) だな！$/) ){
-			ans_var=code.split(' ')[0];
-			expr = code.match(/は (.*) だな！$/)[1];
-			arg1 = expr.match(/(.*) と (.*) の(.*)$/)[1];
+			const ans_var=code.split(' ')[0];
+			const expr = code.match(/は (.*) だな！$/)[1];
+			let arg1 = expr.match(/(.*) と (.*) の(.*)$/)[1];
 			if(isNaN(arg1)){
 				arg1 = memory[arg1];
 			}
-			arg2 = expr.match(/(.*) と (.*) の(.*)$/)[2];
+			let arg2 = expr.match(/(.*) と (.*) の(.*)$/)[2];
 			if(isNaN(arg2)){
 				arg2 = memory[arg2];
 			}
-			wasa = expr.match(/(.*) と (.*) の(.*)$/)[3];
+			const wasa = expr.match(/(.*) と (.*) の(.*)$/)[3];
+			let ans;
 			if(wasa === "和"){
 				ans = parseInt(arg1) + parseInt(arg2);
 			}else if(wasa === "差"){
@@ -118,28 +119,3 @@ const compile = (codes,pc,memory) => {
 	};
 	return pc;
 }
-
-sourcecode =
-        "要するに俺が言いたいのは 「Hello World」 ってことだな！\n" +
-	"要するに俺が言いたいのは 「テスト」 ってことだな！\n" +
-	"qwerty が知りたい！\n" +
-	"要するに俺が言いたいのは qwerty ってことだな！\n" +
-	"a は 5 と 4 の和 だな！\n" +
-	"要するに俺が言いたいのは a ってことだな！\n" +
-	"a は a と a の積 だな！\n" +
-	"要するに俺が言いたいのは a ってことだな！\n" +
-	"b は 2 と 4 のアンド だな！\n" +
-	"要するに俺が言いたいのは b ってことだな！\n" +
-	"b は 2 と 4 のオア だな！\n" +
-	"要するに俺が言いたいのは b ってことだな！\n" +
-	"もし b が 6 と等しい なら\n" +
-		"要するに俺が言いたいのは 「正しい！」 ってことだな！\n" +
-		"もし a が 81 と等しい なら\n" +
-			"要するに俺が言いたいのは 「正しい！」 ってことだな！\n" +
-		"そうじゃなきゃ\n" +
-			"要するに俺が言いたいのは 「正しくない！」 ってことだな！\n" +
-		"だな！\n" +
-	"そうじゃなきゃ\n" +
-		"要するに俺が言いたいのは 「正しくない！」 ってことだな！\n" +
-	"だな！"
-compile(sourcecode,0,{});
