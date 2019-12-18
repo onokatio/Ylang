@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   module: {
     rules: [
@@ -17,4 +19,8 @@ module.exports = {
     ],
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
+  output: {
+	  filename: 'main.js',
+	  path: path.join(__dirname, 'dist/')
+  },
 };

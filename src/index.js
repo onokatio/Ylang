@@ -1,7 +1,9 @@
 import { compile } from './vm.js'
 
 const run_compile = (e) => {
-	code = document.getElementById("code").value;
+	const result = document.getElementById("result")
+	result.value = ''
+	const code = document.getElementById("code").value;
 	compile(code,0,{})
 }
 
