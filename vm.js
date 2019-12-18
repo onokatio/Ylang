@@ -32,7 +32,9 @@ const compile = (codes,pc,memory) => {
 			print_var = code.match(/^要するに俺が言いたいのは (.*) ってことだな！$/)[1];
 			print_result(memory[print_var])
 		}else if( code.match(/が知りたい！$/) ){
-			memory[code.split(' ')[0]] = prompt("入力してください。");
+			if(typeof prompt !== "undefined"){
+				memory[code.split(' ')[0]] = prompt("入力してください。");
+			}
 		}else if( code.match(/は (.*) だな！$/) ){
 			ans_var=code.split(' ')[0];
 			expr = code.match(/は (.*) だな！$/)[1];
