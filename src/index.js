@@ -1,8 +1,12 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
+import { Alert } from 'react-bootstrap'
+
 import hljs from 'highlight.js'
 import 'highlight.js/styles/solarized-dark.css'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import ylang from './HighlightDefine.js'
 hljs.registerLanguage('ylang', ylang);
@@ -19,6 +23,7 @@ const run_compile = (e) => {
 	result.value = ''
 	const code = document.getElementById("code").value;
 	compile(code,0,{})
+	ReactDOM.render(<Alert variant='primary' dismissible>Compile finished.</Alert>, document.getElementById("alertlist"))
 }
 
 const button = document.getElementById("compileButton")
