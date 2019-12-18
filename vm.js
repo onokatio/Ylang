@@ -9,8 +9,14 @@ const compile_nop = (codes,pc,memory) => {
 	opcode_list = codes.split('\n');
 	while( pc < opcode_list.length ){
 		const code = opcode_list[pc];
+		if( code.match(/^だな！$/) !== null ){
+			return pc;
+		}else if( code.match(/^そうじゃなきゃ$/) !== null ){
+			return pc;
+		}
 		pc++
 	}
+	return pc;
 }
 
 const compile = (codes,pc,memory) => {
@@ -62,17 +68,17 @@ const compile = (codes,pc,memory) => {
 			if( expr.match( /(.*) が (.*) (.*)$/ ) ){
 				arg1 = expr.match( /(.*) が (.*) (.*)$/ )[1];
 				if(isNaN(arg1)){
-					arg1 = mamory[arg1];
+					arg1 = memory[arg1];
 				}
 				arg2 = expr.match( /(.*) が (.*) (.*)$/ )[2];
 				if(isNaN(arg2)){
-					arg2 = mamory[arg1];
+					arg2 = memory[arg1];
 				}
 				comp_oper = expr.match( /(.*) が (.*) (.*)$/ )[3];
 				if(comp_oper === "と等しい"){
-					if(arg1 === arg2){
+					if(arg1 == arg2){
 						ans = true;
-					}else if(arg1 !== arg2){
+					}else if(arg1 != arg2){
 						ans = false;
 					}
 				}else if(comp_oper === "より大きい"){
@@ -88,18 +94,31 @@ const compile = (codes,pc,memory) => {
 						ans = false;
 					}
 				}
+				if(ans === true){
+					let new_pc = compile(codes,pc+1,memory)
+					if(opcode_list[new_pc].match(/^そうじゃなきゃ$/) !== null){
+						new_pc = compile_nop(codes,new_pc+2,memory)
+					}
+					pc = new_pc;
+				}else{
+					let new_pc = compile_nop(codes,pc+1,memory)
+					if(opcode_list[new_pc].match(/^そうじゃなきゃ$/) !== null){
+						new_pc = compile(codes,new_pc+1,memory)
+					}
+					pc = new_pc;
+				}
 			}
-			/*
-			let index_copy = index
-			for( opcode_list[index_copy] !== '{' ) index_copy++;
-			compile(opcode_list.slice(index,index_copy))
-			index = index_copy+1;
-			*/
+		}else if( code.match(/^だな！$/) !== null ){
+			return pc;
+		}else if( code.match(/^そうじゃなきゃ$/) !== null ){
+			return pc;
 		}else{
-			print_result("[mode] other");
+			print_result("error: could not parse.");
+			print_result(code)
 		}
 		pc++
 	};
+	return pc;
 }
 
 sourcecode =
@@ -112,6 +131,16 @@ sourcecode =
 	"b は 2 と 4 のアンド だな！\n" +
 	"要するに俺が言いたいのは b ってことだな！\n" +
 	"b は 2 と 4 のオア だな！\n" +
-	"要するに俺が言いたいのは b ってことだな！"
+	"要するに俺が言いたいのは b ってことだな！\n" +
+	"もし b が 6 と等しい なら\n" +
+		"要するに俺が言いたいのは 「正しい！」 ってことだな！\n" +
+		"もし a が 81 と等しい なら\n" +
+			"要するに俺が言いたいのは 「正しい！」 ってことだな！\n" +
+		"そうじゃなきゃ\n" +
+			"要するに俺が言いたいのは 「正しくない！」 ってことだな！\n" +
+		"だな！\n" +
+	"そうじゃなきゃ\n" +
+		"要するに俺が言いたいのは 「正しくない！」 ってことだな！\n" +
+	"だな！"
 compile(sourcecode,0,{});
 
