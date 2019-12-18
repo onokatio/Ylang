@@ -1,6 +1,12 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
+import hljs from 'highlight.js'
+import 'highlight.js/styles/solarized-dark.css'
+
+import ylang from './HighlightDefine.js'
+hljs.registerLanguage('ylang', ylang);
+
 import { compile } from './vm.js'
 
 import SampleCodes from './components/SampleCodes.jsx'

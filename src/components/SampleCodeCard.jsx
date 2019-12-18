@@ -1,5 +1,7 @@
 import React from "react"
 
+import Highlight from 'react-highlight.js'
+
 export default class SampleCodeCard extends React.Component {
 	usecode = () => {
 		document.getElementById("code").value = this.props.sourcecode;
@@ -10,9 +12,9 @@ export default class SampleCodeCard extends React.Component {
 				<div className="card-body">
 					<h5 className="card-title">{this.props.title}</h5>
 					<p className="card-text">{this.props.description}</p>
-					<p className="sourcecode">
-						<code>{this.props.sourcecode}</code>
-					</p>
+					<Highlight language='javascript'>
+						{this.props.sourcecode}
+					</Highlight>
 					<button onClick={this.usecode} className="btn btn-primary">このソースコードを使う</button>
 				</div>
 			</div>
