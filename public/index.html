@@ -28,12 +28,14 @@
 				position: fixed;
 				width: 30vw;
 				margin: 3rem;
+				margin-top: 5rem;
 				top: 0;
 				right: 0;
 				z-index: 10;
 			}
 			#editor {
 				background-color: #fff;
+				padding-top: 5rem;
 			}
 			#result {
 				z-index: 5;
@@ -61,11 +63,50 @@
 				background-color: #222;
 				color: #bbb;
 			}
+			.navbar {
+				position: fixed !important;
+				width: 100vw;
+				top: 0;
+				left: 0;
+				z-index: 10;
+			}
 		</style>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css" integrity="sha384-4egj0UshiufDcIR8Pq4ulYCx/jvrTih6oEvE7+gfNChsPHNn+OhNN35wMK58G3bf" crossorigin="anonymous">
 	</head>
 	<body>
 		<div id="particle"></div>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <a class="navbar-brand" href="#">Ylang</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item active">
+			<a class="nav-link" href="#code">Editor <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item">
+			<a class="nav-link" href="#result">Result</a>
+		      </li>
+		      <li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  Sample Codes
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			  <a class="dropdown-item" href="#">Action</a>
+			  <a class="dropdown-item" href="#">Another action</a>
+			  <div class="dropdown-divider"></div>
+			  <a class="dropdown-item" href="#">Something else here</a>
+			</div>
+		      </li>
+		    </ul>
+		    <form class="form-inline my-2 my-lg-0">
+		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		    </form>
+		  </div>
+		</nav>
 		<div id="alertlist"></div>
 		<div id="editor" class="d-flex flex-column justify-content-center align-items-center align-self-center">
 			<h1 class="text-center display-1" style="display: inline; color: #000;">Y Lang</h1>
@@ -80,8 +121,8 @@
 					<div class="col my-3 d-flex flex-row justify-content-center align-items-center align-self-center">
 						<button type="button" id='compileButton' class="btn btn-primary" >Compile</button>
 					</div>
-					<div class="col">
-						<textarea class="form-control" id="result" rows="3" placeholder="Result"></textarea>
+					<div class="col my-3 d-flex flex-row justify-content-center align-items-center align-self-center">
+						<textarea style="width: 50vw;" class="form-control" id="result" rows="3" placeholder="Result"></textarea>
 					</div>
 				</div>
 			</div>

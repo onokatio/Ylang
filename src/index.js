@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 
 import { Alert } from 'react-bootstrap'
 import { AlertDismissible } from './components/AlertDismissible.jsx'
+import { Toast } from 'react-bootstrap'
 
 import hljs from 'highlight.js'
 import 'highlight.js/styles/solarized-dark.css'
@@ -20,11 +21,20 @@ import SampleCodeCard from './components/SampleCodeCard.jsx'
 const samples = require('./samplejson.json')
 
 const run_compile = (e) => {
+	const toast = (
+		<Toast>
+			<Toast.Header>
+				<strong className="mr-auto">Compiler status message</strong>
+				<small>0 mins go</small>
+			</Toast.Header>
+			<Toast.Body>Compile finished.</Toast.Body>
+		</Toast>
+	)
 	const result = document.getElementById("result")
 	result.value = ''
 	const code = document.getElementById("code").value;
 	compile(code,0,{})
-	ReactDOM.render(<Alert variant='primary'>Compile finished.</Alert>, document.getElementById("alertlist"))
+	ReactDOM.render(toast, document.getElementById("alertlist"))
 }
 
 const button = document.getElementById("compileButton")
