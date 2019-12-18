@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lnag="ja">
+	<head>
+		<meta charset='UTF-8'>
+		<link rel="stylesheet" href="https://cdn.honokak.osaka/honoka/4.3.1/css/bootstrap.min.css">
+		<meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'>
+		<title>Y Language</title>
+		<style>
+			code {
+				color: #fff;
+				margin: 1rem 1rem;
+			}
+			.sourcecode {
+				background-color: #222;
+				color: #bbb;
+			}
+			.card {
+				width: 50rem;
+				margin: 10px;
+			}
+			pre {
+				background-color: #222;
+			}
+			.hljs {
+				background-color: #222 !important;
+			}
+			#alertlist {
+				position: fixed;
+				width: 20vw;
+				margin-top: 5rem;
+				top: 0;
+				right: 0;
+				z-index: 10;
+			}
+			#origin-header {
+				background-color: #fff;
+				padding-top: 5rem;
+			}
+			#editor {
+				background-color: #fff;
+			}
+			#result {
+				z-index: 5;
+			}
+			#particle {
+			    background-color: #000;
+			    position: fixed;
+			    width: 100%;
+			    height: 100%;
+			    top: 0;
+			    left: 0;
+			    z-index: -1;
+			}
+			#particle canvas {
+			    display: block;
+			    vertical-align: bottom;
+			    -webkit-transform: scale(1);
+			    -ms-transform: scale(1);
+			    transform: scale(1);
+			    opacity: 1;
+			    -webkit-transition: opacity .8s ease, -webkit-transform 1.4s ease;
+			    transition: opacity .8s ease, transform 1.4s ease
+			}
+			#code {
+				background-color: #222;
+				color: #bbb;
+			}
+			.navbar {
+				position: fixed !important;
+				width: 100vw;
+				top: 0;
+				left: 0;
+				z-index: 10;
+			}
+			#description {
+				position: relative;
+				z-index: 0;
+				overflow: hidden;
+				background-image: url("./back.jpg");
+			}
+			#description::before {
+				content: '';
+				background: inherit;
+				filter: blur(8px);
+				position: absolute;
+				top: -5px;
+				left: -5px;
+				right: -5px;
+				bottom: -5px;
+				z-index: -1;
+			}
+		</style>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css" integrity="sha384-4egj0UshiufDcIR8Pq4ulYCx/jvrTih6oEvE7+gfNChsPHNn+OhNN35wMK58G3bf" crossorigin="anonymous">
+	</head>
+	<body>
+		<div id="particle"></div>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <a class="navbar-brand" href="#">Ylang</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item active">
+			<a class="nav-link" href="#code">Editor <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item">
+			<a class="nav-link" href="#result">Result</a>
+		      </li>
+		      <li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  Sample Codes
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			  <a class="dropdown-item" href="#">Action</a>
+			  <a class="dropdown-item" href="#">Another action</a>
+			  <div class="dropdown-divider"></div>
+			  <a class="dropdown-item" href="#">Something else here</a>
+			</div>
+		      </li>
+		    </ul>
+		    <form class="form-inline my-2 my-lg-0">
+		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		    </form>
+		  </div>
+		</nav>
+		<div id="alertlist"></div>
+		<div id="origin-header" class="d-flex flex-column justify-content-center align-items-center align-self-center">
+			<h1 class="text-center display-1" style="display: inline; color: #000;">Y Lang</h1>
+			<h2 id="typewriter" class="text-center" style="display: inline; color: #666;">Y Lang</h2>
+		</div>
+		<div id="editor" class="d-flex">
+			<div class="container">
+				<div class="my-3 py-3">
+					<div class="col my-3">
+						<textarea class="form-control" id="code" rows="12" placeholder="Source code"></textarea>
+					</div>
+					<div class="col my-3 d-flex flex-row justify-content-center align-items-center align-self-center">
+						<button type="button" id='compileButton' class="btn btn-primary" >Compile</button>
+					</div>
+					<div class="col my-3 d-flex flex-row justify-content-center align-items-center align-self-center">
+						<textarea style="width: 50vw;" class="form-control" id="result" rows="3" placeholder="Result"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="d-flex flex-column justify-content-center align-items-center align-self-center">
+			<p>
+				<div id="samples"></div>
+			</p>
+		</div>
+		<div id="description" class="d-flex flex-column justify-content-center align-items-center align-self-center" style="color: #fff; padding: 10rem;">
+			<h2 class="display-2" style="color: #fff;">Y Language とは？</h2>
+			<p style="text-align: center;">
+				Y言語は、誰でも簡単に習得できる日本語プログラミング言語です。
+				<br>
+				Webブラウザ内で動作するため環境構築が不要で、日本語のため理解が容易となっています。
+				<br>
+				GUIプログラミング言語と比べ、文字に近いためC言語などの習得の全段階に最適です。
+				<br>
+				また、他の日本語プログラミング言語と比べ、機能が少ないため実装が簡単といった特徴があります。
+			</p>
+		</div>
+		<!-- position: absolute; top: 50%; left: 50%;-->
+		<script src="/particles.js"></script>
+		<script src="/particlesjs-config.js"></script>
+		<script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+		<script>
+			particlesJS('particle', particle_setting);
+			new Typewriter('#typewriter', {
+			  strings: ['Hello World', "An Japanese based programming Language", "By Y"],
+			  autoStart: true,
+			  loop: true,
+			});
+		</script>
+		<script src='/main.js'></script>
+	</body>
+</html>
