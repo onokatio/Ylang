@@ -1,6 +1,6 @@
 const print_result = text => {
 	if(typeof document !== "undefined"){
-		document.getElementById("result").value += text
+		document.getElementById("result").value += text + "\n"
 	}
 	console.log(text)
 }
@@ -121,7 +121,7 @@ sourcecode =
         "要するに俺が言いたいのは 「Hello World」 ってことだな！\n" +
 	"要するに俺が言いたいのは 「テスト」 ってことだな！\n" +
 	"qwerty が知りたい！\n" +
-	"要するに俺が言いたいのは qwerty ってことだな！"
+	"要するに俺が言いたいのは qwerty ってことだな！\n" +
 	"a は 5 と 4 の和 だな！\n" +
 	"要するに俺が言いたいのは a ってことだな！\n" +
 	"a は a と a の積 だな！\n" +
