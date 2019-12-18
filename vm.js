@@ -3,15 +3,6 @@ const print_result = text => {
 	console.log(text)
 }
 
-/*
-const compile = (codes,pc) => {
-	var memory = {};
-	opcode_list = codes.split('\n');
-	while( pc < opcode_list.length ){
-	}
-}
-*/
-
 const compile = (codes,pc) => {
 	var memory = {};
 	opcode_list = codes.split('\n');
