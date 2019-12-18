@@ -63,17 +63,18 @@ export const compile = (codes,pc,memory) => {
 			}
 			memory[ans_var] = ans;
 		}else if( code.match(/もし (.*) なら$/) ){
-			expr = code.match(/もし (.*) なら$/)[1];
+			const expr = code.match(/もし (.*) なら$/)[1];
 			if( expr.match( /(.*) が (.*) (.*)$/ ) ){
-				arg1 = expr.match( /(.*) が (.*) (.*)$/ )[1];
+				let arg1 = expr.match( /(.*) が (.*) (.*)$/ )[1];
 				if(isNaN(arg1)){
 					arg1 = memory[arg1];
 				}
-				arg2 = expr.match( /(.*) が (.*) (.*)$/ )[2];
+				let arg2 = expr.match( /(.*) が (.*) (.*)$/ )[2];
 				if(isNaN(arg2)){
 					arg2 = memory[arg1];
 				}
-				comp_oper = expr.match( /(.*) が (.*) (.*)$/ )[3];
+				const comp_oper = expr.match( /(.*) が (.*) (.*)$/ )[3];
+				let ans;
 				if(comp_oper === "と等しい"){
 					if(arg1 == arg2){
 						ans = true;
