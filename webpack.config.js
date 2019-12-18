@@ -19,8 +19,12 @@ module.exports = {
     ],
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
+  devServer: {
+	  contentBase: path.join(__dirname, 'public/'),
+	  watchContentBase: true,
+  },
   output: {
 	  filename: 'main.js',
-	  path: path.join(__dirname, 'public/')
+	  path: path.join(__dirname, 'public/'),
   },
 };
