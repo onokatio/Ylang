@@ -4,7 +4,7 @@
 		<meta charset='UTF-8'>
 		<link rel="stylesheet" href="https://cdn.honokak.osaka/honoka/4.3.1/css/bootstrap.min.css">
 		<meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'>
-		<title>Y Lang</title>
+		<title>Y Language</title>
 		<style>
 			code {
 				color: #fff;
@@ -26,16 +26,18 @@
 			}
 			#alertlist {
 				position: fixed;
-				width: 30vw;
-				margin: 3rem;
+				width: 20vw;
 				margin-top: 5rem;
 				top: 0;
 				right: 0;
 				z-index: 10;
 			}
-			#editor {
+			#origin-header {
 				background-color: #fff;
 				padding-top: 5rem;
+			}
+			#editor {
+				background-color: #fff;
 			}
 			#result {
 				z-index: 5;
@@ -69,6 +71,23 @@
 				top: 0;
 				left: 0;
 				z-index: 10;
+			}
+			#description {
+				position: relative;
+				z-index: 0;
+				overflow: hidden;
+				background-image: url("./back.jpg");
+			}
+			#description::before {
+				content: '';
+				background: inherit;
+				filter: blur(8px);
+				position: absolute;
+				top: -5px;
+				left: -5px;
+				right: -5px;
+				bottom: -5px;
+				z-index: -1;
 			}
 		</style>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css" integrity="sha384-4egj0UshiufDcIR8Pq4ulYCx/jvrTih6oEvE7+gfNChsPHNn+OhNN35wMK58G3bf" crossorigin="anonymous">
@@ -108,7 +127,7 @@
 		  </div>
 		</nav>
 		<div id="alertlist"></div>
-		<div id="editor" class="d-flex flex-column justify-content-center align-items-center align-self-center">
+		<div id="origin-header" class="d-flex flex-column justify-content-center align-items-center align-self-center">
 			<h1 class="text-center display-1" style="display: inline; color: #000;">Y Lang</h1>
 			<h2 id="typewriter" class="text-center" style="display: inline; color: #666;">Y Lang</h2>
 		</div>
@@ -130,6 +149,18 @@
 		<div class="d-flex flex-column justify-content-center align-items-center align-self-center">
 			<p>
 				<div id="samples"></div>
+			</p>
+		</div>
+		<div id="description" class="d-flex flex-column justify-content-center align-items-center align-self-center" style="color: #fff; padding: 10rem;">
+			<h2 class="display-2" style="color: #fff;">Y Language とは？</h2>
+			<p style="text-align: center;">
+				Y言語は、誰でも簡単に習得できる日本語プログラミング言語です。
+				<br>
+				Webブラウザ内で動作するため環境構築が不要で、日本語のため理解が容易となっています。
+				<br>
+				GUIプログラミング言語と比べ、文字に近いためC言語などの習得の全段階に最適です。
+				<br>
+				また、他の日本語プログラミング言語と比べ、機能が少ないため実装が簡単といった特徴があります。
 			</p>
 		</div>
 		<!-- position: absolute; top: 50%; left: 50%;-->
