@@ -1,6 +1,9 @@
 import React from "react"
 
 export default class SampleCodeCard extends React.Component {
+	usecode = () => {
+		document.getElementById("code").value = this.props.sourcecode;
+	}
 	render() {
 		return (
 			<div className="card">
@@ -10,7 +13,7 @@ export default class SampleCodeCard extends React.Component {
 					<p>
 						<code>{this.props.sourcecode}</code>
 					</p>
-					<a href="#" className="btn btn-primary">実行してみる</a>
+					<button onClick={this.usecode} className="btn btn-primary">このソースコードを使う</button>
 				</div>
 			</div>
 		)

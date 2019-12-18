@@ -7,7 +7,6 @@ import SampleCodes from './components/SampleCodes.jsx'
 import SampleCodeCard from './components/SampleCodeCard.jsx'
 
 const samples = require('./samplejson.json')
-console.log(samples)
 
 const run_compile = (e) => {
 	const result = document.getElementById("result")
