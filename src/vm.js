@@ -1,54 +1,49 @@
-const print_result =
-    text => {
-      if (typeof document !== "undefined") {
-        document.getElementById("result").value += text
-      }
-      console.log(text)
-    }
+const print_result = text => {
+  if (typeof document !== "undefined") {
+    document.getElementById("result").value += text;
+  }
+  console.log(text);
+};
 
-const compile_nop =
-    (codes, pc, memory) => {
-      const opcode_list = codes.split('\n');
-      while (pc < opcode_list.length) {
-        const code = opcode_list[pc];
-        if (code.match(/^だな！$/) !== null) {
-          return pc;
-        } else if (code.match(/^そうじゃなきゃ$/) !== null) {
-          return pc;
-        }
-        pc++
-      }
+const compile_nop = (codes, pc, memory) => {
+  const opcode_list = codes.split("\n");
+  while (pc < opcode_list.length) {
+    const code = opcode_list[pc];
+    if (code.match(/^だな！$/) !== null) {
+      return pc;
+    } else if (code.match(/^そうじゃなきゃ$/) !== null) {
       return pc;
     }
+    pc++;
+  }
+  return pc;
+};
 
 export const compile = (codes, pc, memory) => {
-  const opcode_list = codes.split('\n');
+  const opcode_list = codes.split("\n");
   while (pc < opcode_list.length) {
     const code = opcode_list[pc];
 
-    if (code.match(
-            /^要するに俺が言いたいのは 「(.*)」 ってことだな！$/) !==
-        null) {
-
+    if (
+      code.match(/^要するに俺が言いたいのは 「(.*)」 ってことだな！$/) !== null
+    ) {
       print_result(
-          code.match(
-              /^要するに俺が言いたいのは 「(.*)」 ってことだな！$/)
-              [1] +
-          "\n");
-
+        code.match(/^要するに俺が言いたいのは 「(.*)」 ってことだな！$/)[1] +
+          "\n"
+      );
     } else if (
-        code.match(
-            /^要するに俺が言いたいのは (.*) ってことだな！$/) !==
-        null) {
+      code.match(/^要するに俺が言いたいのは (.*) ってことだな！$/) !== null
+    ) {
       const print_var = code.match(
-          /^要するに俺が言いたいのは (.*) ってことだな！$/)[1];
-      print_result(memory[print_var] + "\n")
+        /^要するに俺が言いたいのは (.*) ってことだな！$/
+      )[1];
+      print_result(memory[print_var] + "\n");
     } else if (code.match(/が知りたい！$/)) {
       if (typeof prompt !== "undefined") {
-        memory[code.split(' ')[0]] = prompt("入力してください。");
+        memory[code.split(" ")[0]] = prompt("入力してください。");
       }
     } else if (code.match(/は (.*) だな！$/)) {
-      const ans_var = code.split(' ')[0];
+      const ans_var = code.split(" ")[0];
       const expr = code.match(/は (.*) だな！$/)[1];
       let arg1 = expr.match(/(.*) と (.*) の(.*)$/)[1];
       if (isNaN(arg1)) {
@@ -107,15 +102,15 @@ export const compile = (codes, pc, memory) => {
           }
         }
         if (ans === true) {
-          let new_pc = compile(codes, pc + 1, memory)
+          let new_pc = compile(codes, pc + 1, memory);
           if (opcode_list[new_pc].match(/^そうじゃなきゃ$/) !== null) {
-            new_pc = compile_nop(codes, new_pc + 2, memory)
+            new_pc = compile_nop(codes, new_pc + 2, memory);
           }
           pc = new_pc;
         } else {
-          let new_pc = compile_nop(codes, pc + 1, memory)
+          let new_pc = compile_nop(codes, pc + 1, memory);
           if (opcode_list[new_pc].match(/^そうじゃなきゃ$/) !== null) {
-            new_pc = compile(codes, new_pc + 1, memory)
+            new_pc = compile(codes, new_pc + 1, memory);
           }
           pc = new_pc;
         }
@@ -126,9 +121,9 @@ export const compile = (codes, pc, memory) => {
       return pc;
     } else {
       print_result("error: could not parse.");
-      print_result(code)
+      print_result(code);
     }
-    pc++
-  };
+    pc++;
+  }
   return pc;
-}
+};
