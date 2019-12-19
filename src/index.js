@@ -18,6 +18,8 @@ import { compile } from './vm.js'
 import SampleCodes from './components/SampleCodes.jsx'
 import SampleCodeCard from './components/SampleCodeCard.jsx'
 
+import ToastDismissible from './components/ToastDismissible.jsx'
+
 const samples = require('./samplejson.json')
 
 const run_compile = (e) => {
@@ -34,7 +36,7 @@ const run_compile = (e) => {
 	result.value = ''
 	const code = document.getElementById("code").value;
 	compile(code,0,{})
-	ReactDOM.render(toast, document.getElementById("alertlist"))
+	ReactDOM.render(<ToastDismissible defaultshow={true}/>, document.getElementById("alertlist"))
 }
 
 const button = document.getElementById("compileButton")
