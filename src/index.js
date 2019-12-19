@@ -36,7 +36,7 @@ const run_compile = (e) => {
 	result.value = ''
 	const code = document.getElementById("code").value;
 	compile(code,0,{})
-	ReactDOM.render(<ToastDismissible defaultshow={true}/>, document.getElementById("alertlist"))
+	ReactDOM.render(<ToastDismissible key={code}/>, document.getElementById("alertlist"))
 }
 
 const button = document.getElementById("compileButton")

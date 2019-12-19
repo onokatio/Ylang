@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Toast } from 'react-bootstrap'
 
-export default class ToastDismissible extends React.Component {
-	render() {
-		const [show, setShow] = useState(this.props.defaultshow);
+//export default class ToastDismissible extends React.Component {
+export default function ToastDismissible () {
+		const [show, setShow] = useState(true)
 		const toggleShow = () => setShow(!show)
 
 		return (
@@ -15,5 +15,4 @@ export default class ToastDismissible extends React.Component {
 				<Toast.Body>Compile finished.</Toast.Body>
 			</Toast>
 		);
-	}
 }
