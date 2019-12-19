@@ -1,6 +1,6 @@
 const print_result = text => {
 	if(typeof document !== "undefined"){
-		document.getElementById("result").value += text + "\n"
+		document.getElementById("result").value += text
 	}
 	console.log(text)
 }
@@ -30,7 +30,7 @@ export const compile = (codes,pc,memory) => {
 
 		}else if( code.match(/^要するに俺が言いたいのは (.*) ってことだな！$/) !== null ){
 			const print_var = code.match(/^要するに俺が言いたいのは (.*) ってことだな！$/)[1];
-			print_result(memory[print_var])
+			print_result(memory[print_var] + "\n")
 		}else if( code.match(/が知りたい！$/) ){
 			if(typeof prompt !== "undefined"){
 				memory[code.split(' ')[0]] = prompt("入力してください。");

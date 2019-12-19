@@ -6,6 +6,7 @@ import Highlight from 'react-highlight.js'
 export default class SampleCodeCard extends React.Component {
 	usecode = () => {
 		document.getElementById("code").value = this.props.sourcecode;
+		window.location.href = '#origin-header'
 	}
 	render() {
 		return (
