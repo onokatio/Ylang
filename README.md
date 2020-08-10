@@ -6,6 +6,7 @@
 $ npm install --save-dev
 $ npm run dev # development build
 $ npm run build # production build
+$ npm run start # development build & local serve
 ```
 
 ## Language specifications
